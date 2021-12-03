@@ -1,5 +1,5 @@
 
-var canvas = new fabric.canvas("myCanvas");
+var canvas = new fabric.Canvas("myCanvas");
 
 ball_y = 0;
 ball_x = 0;
@@ -10,7 +10,7 @@ block_image_width = 5;
 block_image_height = 5;
 
 function load_img(){
-	fabric.Image,fromURL("golf-h.png", function(Img){
+	fabric.Image.fromURL("golf-h.png", function(Img){
 		hole_obj = Img;
 		hole_obj.scaleToWidth(50);
 		hole_obj.scaleToHeight(50);
@@ -25,7 +25,7 @@ function load_img(){
 
 function new_image()
 {
-	fabric.Image,fromURL("ball.png", function(Img){
+	fabric.Image.fromURL("ball.png", function(Img){
 		ball_obj = Img;
 		ball_obj.scaleToWidth(50);
 		ball_obj.scaleToHeight(50);
@@ -73,29 +73,35 @@ function my_keydown(e)
 	
 	function up()
 	{
-		// Write a code to move ball upward.
+		if(ball_y >= 5){
+			ball_y = ball_y - block_image_height;
+		canvas.remove(ball_obj);
+	    new_image();}
 	}
+		
 
-	function down()
-	{
-		 // Write a code to move ball downward.
+	function down(){
+		if(ball_y <= 450){
+			ball_y = ball_y + block_image_height;
+		canvas.remove(ball_obj);
+	    new_image();}
 	}
-
-	function left()
-	{
-		if(ball_x >5)
-		{
-			// Write a code to move ball left side.
+		
+	function left(){
+		if(ball_x > 5){
+			ball_x = ball_x - block_image_width;
+		canvas.remove(ball_obj);
+	    new_image();}
 		}
 	}
 
-	function right()
-	{
-		if(ball_x <=1050)
-		{
-			// Write a code to move ball right side.
+	function right(){
+		if(ball_x <= 1050){
+		ball_x = ball_x + block_image_width;
+		canvas.remove(ball_obj);
+	    new_image();}
 		}
-	}
 	
-}
+	
+
 
